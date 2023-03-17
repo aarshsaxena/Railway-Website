@@ -14,7 +14,7 @@ Database: SQLite
 
 ## Screenshots
 
-![Screenshot]screenshot.png)
+![Screenshot]Screenshot.png)
 
 
 ## Authors
