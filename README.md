@@ -14,7 +14,7 @@ Database: SQLite
 
 ## Screenshots
 
-![WebSite]https://github.com/aarshsaxena/Railway-Website/blob/main/Screenshot%20(51).png)
+![Screenshot]screenshot.png)
 
 
 ## Authors
