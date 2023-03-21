@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page|</title>
+    <link rel="stylesheet" href="/static/css/style_header.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="\static\css\master.css">
+</head>
+<body>
+    <div class="navbar">
+        <img src="/static/images/logo.png" alt="logo" class="logo">
+        <div class="heading">
+            {{title}}
+        </div>
+
+        <ul>
+            <br><br><br><br><br><br><br><br>
+
+            {% if request.user.is_authenticated %}
+
+            <li><a href="#"><b>Welcome&nbsp;{{request.user.get_full_name}}</b></a></li>
+            <li><a href="/home/"><b>Home</b></a></li>
+            <li><a href="/book-ticket/"><b>Book Ticket</b></a></li>
+            <li><a href="/booking-history/"><b>Booking History</b></a></li>
+            <li><a href="/logout/"><b>Logout</b></a></li>
+
+            {% else %}
+            <li><a href="/" ><b>Back</b></a></li>
+
+            {% endif %}
+
+        </ul>
+    </div>
+    <!-- till here, the navigation bar. -->
+    
+    <div class="about_content">
+        <div class="about_bold">{{title}}</div><br>
+        <p>This allows user to register themselves as user, signin, book train tickets, cancel and can check their booking history.</p><br>
+
+            <p> This entire frontend is developed in HTML and CSS and backend is developed in Django (Python). SQLite database is used in this store the various information in a tabular form.</p><br>
+            
+            <p> This is just for demonstration.</p>
+
+
+        
+        
+
+    </div>
+
+    {% include "footer.html" %}

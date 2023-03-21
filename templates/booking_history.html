@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking_History|</title>
+    <link rel="stylesheet" href="/static/css/style_header.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+
+        .form {
+            box-sizing: border-box;
+            font-size: 20px;
+            background-color: rgba(246, 238, 238, 0.492);
+            margin: 50px 180px;
+            padding: 15px 20px 15px 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border: 1px solid lightgrey;
+            border-radius: 4px;
+
+        }
+
+        .button {
+            display: block;
+            margin: auto;
+            font-size: 10px;
+            background-color: rgb(96, 177, 150);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid rgb(9, 9, 9);
+            border-radius: 4px;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="/static/images/logo.png" alt="logo" class="logo">
+        <div class="heading">
+            {{title}}
+        </div>
+
+        <ul>
+            <br><br><br><br><br><br><br><br>
+
+            <li><a href="#"><b>Welcome&nbsp;{{request.user.get_full_name}} </b></a></li>
+            <li><a href="/home/"><b>Home</b></a></li>
+            <li><a href="/about/"><b>About Us</b></a></li>
+            <li><a href="/logout/"><b>Log Out</b></a></li>
+
+        </ul>
+    </div>
+    <!-- till here, the navigation bar. -->
+
+    <div class="form">
+        <h2 style="text-align: center;">Passenger Booking History</h2><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>PNR</th>
+                    <th>Train Number</th>
+                    <th>Date of Journey</th>
+                    <th>No. of Passengers</th>
+                    <th>Class</th>
+                    <th>Amount</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if records|length > 0 %}
+                {% for i in records %}
+
+                <tr>
+                    <td>{{i.pnr}}</td>
+                    <td>{{i.trainno}}</td>
+                    <td>{{i.doj}}</td>
+                    <td>{{i.passno}}</td>
+                    <td>{{i.classs}}</td>
+                    <td>{{i.amt}}</td>
+                    <td>
+                        <form action="/cancel/" method="post">
+                            {% csrf_token %} <input type="hidden" name="pnr" value="{{i.pnr}}"><button type="submit"
+                                class="button">Cancel</button>
+                    </td>
+                </tr>
+                </form>
+                {% endfor %}
+                {% else %}
+                <h2 style="align-content: center;">No Record Found</h2><br>
+                {% endif %}
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+    {% include "footer.html" %}

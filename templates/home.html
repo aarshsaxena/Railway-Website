@@ -1,0 +1,18 @@
+{% include "header.html" %}
+
+        <ul>
+            <br><br><br><br><br><br><br><br>
+
+            <li><a href="#"><b>Welcome&nbsp;{{request.user.get_full_name}}</b></a></li>
+            <li><a href="/about/"><b>About Us</b></a></li>
+            <li><a href="/book-ticket/"><b>Book Ticket</b></a></li>
+            <li><a href="/booking-history/"><b>Booking History</b></a></li>
+            <li><a href="/logout/"><b>Log Out</b></a></li>
+
+        </ul>
+    </div>
+    <!-- till here, the navigation bar. -->
+    
+    <div class="home_imgslider"> </div> <br><br>
+
+    {% include "footer.html" %}

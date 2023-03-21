@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOK-YOUR-TICKET|</title>
+    <link rel="stylesheet" href="/static/css/style_details.css">
+    <link rel="stylesheet" href="\static\css\master.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="/static/images/logo.png" alt="logo" class="logo">
+        <div class="heading">
+            {{title}}
+        </div>
+
+        <ul>
+            <br><br><br><br><br><br><br><br>
+
+            <li><a href="#"><b>Welcome&nbsp;{{request.user.get_full_name}} </b></a></li>
+            <li><a href="/home/"><b>Home</b></a></li>
+            <li><a href="/about/"><b>About Us</b></a></li>
+            <li><a href="/logout/"><b>Log Out</b></a></li>
+
+        </ul>
+    </div>
+    <!-- till here, the navigation bar. -->
+
+    <div class="form">
+        <button onclick="location.href='/book-ticket/'" class="back">Back</button>
+        <form method="post" action="/payment/">
+            {% csrf_token %}
+            {% for i in traindata %}
+        <!-- train details --><h4 style="text-align: center" ;>TRAINS</h4><br>
+        <table style="width: 90%; border: 1px solid black; border-radius: 4px;">
+            <!-- row of trainno,name,class -->
+            <tr style="text-align: center; background-color: rgb(207, 234, 234); font-size: medium;"><td style="width:70%">Train Number:<input type="number" name="trainno" value="{{i.trainno}}" readonly class="tableh" style="width: 10%; background-color: rgb(207, 234, 234);"> &nbsp; Train Name:<input type="text" name="trainname" value="{{i.trainname}}" readonly class="tableh" style="width: 40%; background-color: rgb(207, 234, 234);"></td>
+            <td>Class: &nbsp <input type="text" name="classs" value="{{classs}}" readonly class="tableh" style="background-color: rgb(207, 234, 234);">
+                
+            <!-- data of source and destination -->
+            <tr style="text-align: center; background-color:  rgb(207, 234, 234); font-size: large;"><td colspan="2" style="background-color: rgb(207, 234, 234);">From: <input type="text" name="source" value="{{i.source}}" readonly class="table">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To: <input type="text" name="destination" value="{{i.destination}}" readonly class="table"></td> 
+            
+            
+            <!-- timmings -->
+            <tr><td colspan="2" class="table1" style="background-color: rgb(207, 234, 234);"><pre> Dept: {{i.depart}}         kms:<input type="number" name="kms" value="{{i.kms}}" readonly class="table1" style="width: 45px; font-size: x-small;">            Arr: {{i.arrival}} </pre></td></tr>
+            <!-- fare and date -->
+            <tr><td colspan="2" class="table1" style="background-color: rgb(207, 234, 234);"><pre>Fare per person: <input type="number" name="fare" value="{{fare}}" readonly class="table1" style="width: 10%; background-color: rgb(207, 234, 234);">                        Date of Journey: <input type="text" name="date" value="{{date}}" readonly class="table1" style="width: 75px; font-size: x-small;"></pre></td></tr>
+        </table>
+        <br><br>
+        {% endfor %}
+
+        <!-- Reservationdetails -->
+        <h2 style="text-align: center;">Reservation Details</h2><br><br>
+        Note: Maximum 5 persons are allowed. <br>
+        <pre>Passenger 1:   Name: <input type="text" name="p1_name" class="pn" >  Gender: <select name="p1_gender" class="ps">
+            <option value="NULL">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>   Age: <input type="number" name="p1_age" class="ps"></pre><br><br>
+
+        <pre>Passenger 2:   Name: <input type="text" name="p2_name" class="pn" >  Gender: <select name="p2_gender" class="ps">
+            <option value="NULL">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>   Age: <input type="number" name="p2_age" class="ps"></pre><br><br>
+
+        <pre>Passenger 3:   Name: <input type="text" name="p3_name" class="pn" >  Gender: <select name="p3_gender" class="ps">
+            <option value="NULL">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>   Age: <input type="number" name="p3_age" class="ps"></pre><br><br>
+
+        <pre>Passenger 4:   Name: <input type="text" name="p4_name" class="pn" >  Gender: <select name="p4_gender" class="ps">
+            <option value="NULL">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>   Age: <input type="number" name="p4_age" class="ps"></pre><br><br>
+
+        <pre>Passenger 5:   Name: <input type="text" name="p5_name" class="pn";" >  Gender: <select name="p5_gender" class="ps">
+            <option value="NULL">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>   Age: <input type="number" name="p5_age" class="ps"></pre>
+        
+        <br><br><br>
+        <button class="button">Next</button>
+        <br><br>
+    </form>
+
+    </div>
+
+
+
+    {% include "footer.html" %}

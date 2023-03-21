@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nobitaland Railways|User LogIn</title>
+    <link rel="stylesheet" href="/static/css/style_header.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="\static\css\master.css">
+    <style>
+        input[type="password"],
+        input[type="text"] {
+            padding: 7px;
+            border: 1px solid #e0ffff;
+            border-radius: 4px;
+            margin: 7px;
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="/static/images/logo.png" alt="logo" class="logo">
+        <div class="heading">
+            {{title}}
+        </div>
+
+        
+    </div>
+    <!-- till here, the navigation bar. -->
+
+    <div class="form" style="width: 40%; margin: auto;">
+        <a href="/" class="back">Back</a>
+        <h2 style="text-align: center;">Log In</h2> <br> <br>
+
+        {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning" role="alert" style="background-color: rgba(233, 233, 36, 0.663);">
+        <strong>&nbsp;&nbsp;&nbsp;&nbsp;{{message}}</strong>&nbsp;&nbsp; 
+    </div>
+    {% endfor %}
+    <br>
+    {% endif %}
+        
+
+        <form method="post" action="/login/">
+            {% csrf_token %}
+            <div style="font-size: x-large;  margin-left: 15%;" >
+            Email id: &nbsp;&nbsp;<input type="text" name="email1" required><br>
+            Password: <input type="password" name="passwd1" required><br><br><br></div>
+
+            <button type="submit" class="button">Log In</button>
+        </form>
+
+
+    </div><div style="margin: 5%;"></div>
+
+    {% include "footer.html" %}

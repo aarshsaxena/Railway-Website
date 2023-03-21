@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nobitaland Railways|User Registration</title>
+    <link rel="stylesheet" href="/static/css/style_header.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="\static\css\master.css">
+    
+</head>
+<body>
+    <div class="navbar">
+        <img src="/static/images/logo.png" alt="logo" class="logo">
+        <div class="heading">
+            {{title}}
+        </div>
+
+<!-- <ul>
+    <br><br><br><br><br><br><br><br>
+
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">User Login</a></li>
+    <li><a href="#">Admin Login</a></li>
+
+</ul> -->
+</div><br>
+
+<div class="form" style="width: 60%; margin: auto;">
+    <button onclick="location.href='/'" class="back">Back</button>
+    <h2 style="text-align: center;">Register Here</h2> <br> <br>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning" role="alert" style="background-color: rgba(233, 233, 36, 0.663);">
+        <strong>&nbsp;&nbsp;&nbsp;&nbsp;{{message}}</strong>
+    </div>
+    {% endfor %}
+    <br><br>
+    {% endif %}
+
+
+    <form method="POST" action="/register/">
+        {% csrf_token %}
+        <h4>Profile Details:</h4> <br>
+
+        First Name:* <input type="text" name="fname" placeholder="First" required> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Last Name:* <input type="text" name="lname" placeholder="Last" required>
+        <br><br>
+        City:* <input type="text" required name="city" placeholder="City"> &nbsp;&nbsp;&nbsp;
+        Province:* <input type="text" name="state" placeholder="state"> &nbsp;&nbsp;&nbsp;
+        Country:* <input type="text" name="country" placeholder="country">
+        <br>
+        <br><br>
+
+        <h4>Account Details:</h4> <br>
+        Email-id:* <input type="email" name="email" placeholder="someone@something.com" required>
+        &nbsp;&nbsp;&nbsp;
+        Confirm Email-id:* <input type="email" name="cemail" placeholder="someone@something.com" required><br><br>
+        Password:* <input type="password" name="passwd" required> &nbsp;&nbsp;&nbsp;
+        Confirm Password:* <input type="password" name="cpasswd" required><br><br>
+        Mobile number:* <input type="number" name="mob" placeholder="9876543210" required><br><br>
+
+        <button type="submit" class="button">Submit</button>
+    </form>
+
+
+</div><br><br>
+
+{% include "footer.html" %}
